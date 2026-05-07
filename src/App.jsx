@@ -89,7 +89,7 @@ Método de pago:
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f8f1e8] via-white to-[#ead8c2] text-neutral-950">
+   <div className="min-h-screen bg-neutral-50 px-3 py-4 sm:px-6">
       <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-yellow-100">
         <div className="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-black tracking-tight">
