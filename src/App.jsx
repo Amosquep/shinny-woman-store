@@ -89,7 +89,7 @@ Método de pago:
   }
 
   return (
-   <div className="min-h-screen bg-neutral-50 px-3 py-4 sm:px-6">
+   <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-neutral-50 px-3 py-4 sm:px-6">
       <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-yellow-100">
         <div className="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-black tracking-tight">
@@ -158,7 +158,7 @@ Método de pago:
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}

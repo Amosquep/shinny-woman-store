@@ -1,6 +1,6 @@
 function ProductCard({ product, addToCart }) {
   return (
-    <div className="bg-white rounded-3xl shadow-lg overflow-hidden border hover:scale-105 transition-all duration-300">
+    <div className="w-full max-w-full overflow-hidden bg-white rounded-2xl shadow-md border">
       <img
         src={
           product.image ||
