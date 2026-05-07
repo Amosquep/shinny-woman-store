@@ -3,9 +3,8 @@ function ProductCard({ product, addToCart }) {
     <div className="group bg-white/80 backdrop-blur border border-yellow-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
       <div className="overflow-hidden">
         <img
-          src={product.image}
+          src={product.image || "https://via.placeholder.com/300x300?text=Shinny+Woman"}
           alt={product.name}
-          className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
         />
       </div>
 
@@ -18,8 +17,8 @@ function ProductCard({ product, addToCart }) {
           {product.name}
         </h2>
 
-        <p className="text-2xl font-bold mt-2 text-neutral-900">
-          ${product.price.toLocaleString()}
+        <p className="text-2xl font-black text-black">
+          ${Number(product.price || 0).toLocaleString("es-CO")}
         </p>
 
         <button
