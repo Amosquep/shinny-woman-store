@@ -89,7 +89,7 @@ Método de pago:
   }
 
   return (
-   <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-neutral-50 px-3 py-4 sm:px-6">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-neutral-50 px-3 py-4 sm:px-6">
       <header className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-yellow-100">
         <div className="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-black tracking-tight">
@@ -146,11 +146,10 @@ Método de pago:
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-5 py-2 rounded-full capitalize whitespace-nowrap transition-all ${
-                      selectedCategory === category
+                    className={`px-5 py-2 rounded-full capitalize whitespace-nowrap transition-all ${selectedCategory === category
                         ? "bg-neutral-950 text-white"
                         : "bg-yellow-50 text-neutral-700 hover:bg-yellow-100"
-                    }`}
+                      }`}
                   >
                     {category}
                   </button>

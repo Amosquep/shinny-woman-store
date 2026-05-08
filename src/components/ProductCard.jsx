@@ -1,13 +1,13 @@
 function ProductCard({ product, addToCart }) {
   return (
-    <div className="w-full max-w-full overflow-hidden bg-white rounded-2xl shadow-md border">
+    <div className="w-full max-w-full overflow-hidden bg-white rounded-2xl shadow-md border p-3">
       <img
         src={
           product.image ||
           `/product-images/page-${String((product.id % 100) + 2).padStart(3, "0")}.jpg`
         }
         alt={product.name}
-        className="w-full h-64 object-cover"
+        className="w-full h-auto max-h-[260px] object-contain bg-white rounded-xl"
       />
 
       <div className="p-5">
