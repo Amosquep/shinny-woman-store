@@ -65,11 +65,19 @@ function App() {
     return ["Todos", ...unique]
   }, [storeProducts])
 
+
   const filteredProducts = useMemo(() => {
+    const cleanSearch = search.toLowerCase().trim()
+
     return storeProducts.filter((product) => {
-      const matchesSearch = product.name
-        ?.toLowerCase()
-        .includes(search.toLowerCase())
+      const name = product.name?.toLowerCase() || ""
+      const category = product.category?.toLowerCase() || ""
+      const description = product.description?.toLowerCase() || ""
+
+      const matchesSearch =
+        name.includes(cleanSearch) ||
+        category.includes(cleanSearch) ||
+        description.includes(cleanSearch)
 
       const matchesCategory =
         selectedCategory === "Todos" ||
@@ -156,24 +164,52 @@ Método de pago:`
         </section>
 
         <section className="bg-white border rounded-3xl p-4 mb-6 shadow-sm">
-          <input
-            type="text"
-            placeholder="Buscar producto..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full border rounded-2xl px-4 py-3 outline-none mb-4"
-          />
+          <div className="relative mb-4">
+            <span className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400">
+              🔍
+            </span>
+
+            <input
+              type="text"
+              placeholder="Buscar maquillaje, labial, crema..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full border rounded-2xl pl-11 pr-24 py-4 outline-none text-base bg-neutral-50 focus:bg-white focus:border-black"
+            />
+
+            {search && (
+              <button
+                onClick={() => setSearch("")}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold bg-black text-white px-3 py-2 rounded-full"
+              >
+                Limpiar
+              </button>
+            )}
+          </div>
+
+          <div className="flex items-center justify-between gap-3 mb-4">
+            <p className="text-sm text-neutral-500">
+              {filteredProducts.length} producto
+              {filteredProducts.length !== 1 ? "s" : ""} encontrado
+              {filteredProducts.length !== 1 ? "s" : ""}
+            </p>
+
+            {search && (
+              <p className="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-bold">
+                “{search}”
+              </p>
+            )}
+          </div>
 
           <div className="flex gap-2 overflow-x-auto pb-2 max-w-full">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full whitespace-nowrap text-sm font-semibold transition ${
-                  selectedCategory === category
-                    ? "bg-black text-white"
-                    : "bg-neutral-100 hover:bg-neutral-200"
-                }`}
+                className={`px-4 py-2 rounded-full whitespace-nowrap text-sm font-semibold transition ${selectedCategory === category
+                  ? "bg-black text-white"
+                  : "bg-neutral-100 hover:bg-neutral-200"
+                  }`}
               >
                 {category}
               </button>
