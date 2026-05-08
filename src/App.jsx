@@ -172,7 +172,7 @@ Método de pago:`
           </div>
         </section>
 
-        <section className="sticky top-[72px] z-40 bg-[#fffaf2]/95 backdrop-blur border border-[#e6d6bd] rounded-3xl p-4 mb-6 shadow-sm">
+        <section className="sticky top-[80px] z-40 bg-[#fffaf2]/95 backdrop-blur border border-[#e6d6bd] rounded-3xl p-4 mb-6 shadow-sm">
           <div className="relative mb-4">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400">
               🔍
