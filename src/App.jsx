@@ -7,6 +7,7 @@ function App() {
   const [cart, setCart] = useState([])
   const [search, setSearch] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("Todos")
+  const [selectedProduct, setSelectedProduct] = useState(null)
 
   useEffect(() => {
     const savedProducts =
@@ -48,11 +49,7 @@ function App() {
     )
   }
 
-  const total = cart.reduce(
-    (sum, item) => sum + Number(item.price || 0),
-    0
-  )
-
+  const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0)
   const hasDiscount = cart.length >= 7
   const discount = hasDiscount ? total * 0.1 : 0
   const finalTotal = total - discount
@@ -64,7 +61,6 @@ function App() {
 
     return ["Todos", ...unique]
   }, [storeProducts])
-
 
   const filteredProducts = useMemo(() => {
     const cleanSearch = search.toLowerCase().trim()
@@ -80,8 +76,7 @@ function App() {
         description.includes(cleanSearch)
 
       const matchesCategory =
-        selectedCategory === "Todos" ||
-        product.category === selectedCategory
+        selectedCategory === "Todos" || product.category === selectedCategory
 
       return matchesSearch && matchesCategory
     })
@@ -119,27 +114,26 @@ Mi ciudad:
 Método de pago:`
 
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
-
     window.open(url, "_blank")
   }
 
   return (
-    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-neutral-50">
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
+    <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-[#f3e5cf] pt-20">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-[#f3e5cf]/95 backdrop-blur border-b border-[#d6b98c]">
         <div className="max-w-7xl mx-auto px-3 sm:px-6 py-4 flex items-center justify-between gap-3">
-          <h1 className="text-2xl sm:text-4xl font-black">
-            Shinny <span className="text-amber-700">Woman</span>
+          <h1 className="text-2xl sm:text-4xl font-black text-[#4b2e16]">
+            Shinny <span className="text-[#b8860b]">Woman</span>
           </h1>
 
-          <div className="bg-black text-white px-4 py-2 rounded-full font-bold text-sm">
+          <div className="bg-[#c9a227] text-white px-4 py-2 rounded-full font-bold text-sm shadow">
             🛒 {cart.length}
           </div>
         </div>
       </header>
 
       <main className="max-w-7xl mx-auto px-3 sm:px-6 py-4">
-        <section className="bg-gradient-to-br from-black to-amber-900 text-white rounded-3xl p-6 sm:p-10 mb-6 shadow-xl">
-          <p className="uppercase tracking-[4px] text-xs text-amber-300 mb-3">
+        <section className="bg-gradient-to-br from-[#4b2e16] to-[#b8860b] text-white rounded-3xl p-6 sm:p-10 mb-6 shadow-xl">
+          <p className="uppercase tracking-[4px] text-xs text-[#f8e6a0] mb-3">
             maquillaje & bienestar
           </p>
 
@@ -147,23 +141,23 @@ Método de pago:`
             Belleza premium para brillar todos los días
           </h2>
 
-          <p className="text-sm sm:text-lg text-neutral-200 max-w-xl">
+          <p className="text-sm sm:text-lg text-[#fff8e8] max-w-xl">
             Compra tus favoritos, arma tu carrito y finaliza tu pedido por
             WhatsApp de forma rápida y personalizada.
           </p>
 
           <div className="flex flex-wrap gap-3 mt-6">
-            <div className="bg-white text-black px-4 py-2 rounded-full text-sm font-bold">
+            <div className="bg-white text-[#4b2e16] px-4 py-2 rounded-full text-sm font-bold">
               10% OFF desde 7 productos
             </div>
 
-            <div className="border border-amber-500 text-amber-300 px-4 py-2 rounded-full text-sm font-semibold">
+            <div className="border border-[#f8e6a0] text-[#f8e6a0] px-4 py-2 rounded-full text-sm font-semibold">
               Pagos: Nequi · Bancolombia · Llave
             </div>
           </div>
         </section>
 
-        <section className="bg-white border rounded-3xl p-4 mb-6 shadow-sm">
+        <section className="bg-[#fffaf2] border border-[#e6d6bd] rounded-3xl p-4 mb-6 shadow-sm">
           <div className="relative mb-4">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400">
               🔍
@@ -174,13 +168,13 @@ Método de pago:`
               placeholder="Buscar maquillaje, labial, crema..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full border rounded-2xl pl-11 pr-24 py-4 outline-none text-base bg-neutral-50 focus:bg-white focus:border-black"
+              className="w-full border border-[#e6d6bd] rounded-2xl pl-11 pr-24 py-4 outline-none text-base bg-white focus:border-[#b8860b]"
             />
 
             {search && (
               <button
                 onClick={() => setSearch("")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold bg-black text-white px-3 py-2 rounded-full"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold bg-[#c9a227] text-white px-3 py-2 rounded-full"
               >
                 Limpiar
               </button>
@@ -188,14 +182,14 @@ Método de pago:`
           </div>
 
           <div className="flex items-center justify-between gap-3 mb-4">
-            <p className="text-sm text-neutral-500">
+            <p className="text-sm text-[#6b4a25]">
               {filteredProducts.length} producto
               {filteredProducts.length !== 1 ? "s" : ""} encontrado
               {filteredProducts.length !== 1 ? "s" : ""}
             </p>
 
             {search && (
-              <p className="text-xs bg-amber-100 text-amber-800 px-3 py-1 rounded-full font-bold">
+              <p className="text-xs bg-[#f8e6a0] text-[#6b4a25] px-3 py-1 rounded-full font-bold">
                 “{search}”
               </p>
             )}
@@ -206,10 +200,11 @@ Método de pago:`
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full whitespace-nowrap text-sm font-semibold transition ${selectedCategory === category
-                  ? "bg-black text-white"
-                  : "bg-neutral-100 hover:bg-neutral-200"
-                  }`}
+                className={`px-4 py-2 rounded-full whitespace-nowrap text-sm font-semibold transition ${
+                  selectedCategory === category
+                    ? "bg-[#c9a227] text-white"
+                    : "bg-[#f8f0e4] text-[#4b2e16] hover:bg-[#ead9bd]"
+                }`}
               >
                 {category}
               </button>
@@ -217,27 +212,27 @@ Método de pago:`
           </div>
         </section>
 
-        <section className="bg-white border rounded-3xl p-4 sm:p-6 mb-6 shadow-sm">
-          <h2 className="text-2xl font-black mb-4">
+        <section className="bg-[#fffaf2] border border-[#e6d6bd] rounded-3xl p-4 sm:p-6 mb-6 shadow-sm">
+          <h2 className="text-2xl font-black mb-4 text-[#4b2e16]">
             Carrito ({cart.length})
           </h2>
 
           {cart.length === 0 ? (
-            <p className="text-neutral-500">Tu carrito está vacío.</p>
+            <p className="text-[#6b4a25]">Tu carrito está vacío.</p>
           ) : (
             <>
               <div className="space-y-3 mb-6">
                 {cart.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between gap-3 border-b pb-3"
+                    className="flex items-center justify-between gap-3 border-b border-[#e6d6bd] pb-3"
                   >
                     <div className="min-w-0">
-                      <p className="font-semibold line-clamp-1">
+                      <p className="font-semibold line-clamp-1 text-[#4b2e16]">
                         {item.name}
                       </p>
 
-                      <p className="text-sm text-neutral-500">
+                      <p className="text-sm text-[#6b4a25]">
                         ${Number(item.price || 0).toLocaleString("es-CO")}
                       </p>
                     </div>
@@ -252,36 +247,31 @@ Método de pago:`
                 ))}
               </div>
 
-              <div className="space-y-2 mb-5">
-                <p>
-                  Subtotal: $
-                  {total.toLocaleString("es-CO")}
-                </p>
+              <div className="space-y-2 mb-5 text-[#4b2e16]">
+                <p>Subtotal: ${total.toLocaleString("es-CO")}</p>
 
                 {hasDiscount && (
                   <p className="text-green-600 font-bold">
-                    Descuento: -$
-                    {discount.toLocaleString("es-CO")}
+                    Descuento: -${discount.toLocaleString("es-CO")}
                   </p>
                 )}
 
                 <p className="text-2xl font-black">
-                  Total: $
-                  {finalTotal.toLocaleString("es-CO")}
+                  Total: ${finalTotal.toLocaleString("es-CO")}
                 </p>
               </div>
 
               <div className="flex flex-col gap-3">
                 <button
                   onClick={sendToWhatsApp}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-2xl font-bold transition"
+                  className="w-full bg-[#c9a227] hover:bg-[#b48c18] text-white py-4 rounded-2xl font-bold transition"
                 >
                   Finalizar pedido por WhatsApp
                 </button>
 
                 <button
                   onClick={() => setCart([])}
-                  className="w-full bg-red-500 hover:bg-red-600 text-white py-3 rounded-2xl font-bold transition"
+                  className="w-full bg-[#4b2e16] hover:bg-[#321f0f] text-white py-3 rounded-2xl font-bold transition"
                 >
                   Vaciar carrito
                 </button>
@@ -297,11 +287,54 @@ Método de pago:`
                 key={product.id}
                 product={product}
                 addToCart={addToCart}
+                onViewProduct={setSelectedProduct}
               />
             ))}
           </div>
         </section>
       </main>
+
+      {selectedProduct && (
+        <div className="fixed inset-0 z-[100] bg-black/70 flex items-center justify-center p-4">
+          <div className="bg-[#f8f0e4] rounded-3xl max-w-md w-full p-4 relative">
+            <button
+              onClick={() => setSelectedProduct(null)}
+              className="absolute top-3 right-3 bg-[#c9a227] text-white w-9 h-9 rounded-full font-black"
+            >
+              ×
+            </button>
+
+            <img
+              src={
+                selectedProduct.image ||
+                `/product-images/page-${String(
+                  (selectedProduct.id % 100) + 2
+                ).padStart(3, "0")}.jpg`
+              }
+              alt={selectedProduct.name}
+              className="w-full max-h-[70vh] object-contain rounded-2xl bg-white"
+            />
+
+            <h2 className="text-xl font-black mt-4 text-[#4b2e16]">
+              {selectedProduct.name}
+            </h2>
+
+            <p className="text-2xl font-black text-[#b8860b] mt-2">
+              ${Number(selectedProduct.price || 0).toLocaleString("es-CO")}
+            </p>
+
+            <button
+              onClick={() => {
+                addToCart(selectedProduct)
+                setSelectedProduct(null)
+              }}
+              className="w-full mt-4 bg-[#c9a227] hover:bg-[#b48c18] text-white py-3 rounded-2xl font-bold"
+            >
+              Agregar al carrito
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

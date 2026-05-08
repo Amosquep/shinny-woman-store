@@ -1,7 +1,10 @@
-function ProductCard({ product, addToCart }) {
+function ProductCard({ product, addToCart, onViewProduct }) {
   return (
-    <div className="w-full min-w-0 overflow-hidden bg-white rounded-2xl shadow-md border p-3">
-      <div className="w-full overflow-hidden rounded-xl bg-white flex items-center justify-center">
+    <div className="w-full min-w-0 overflow-hidden bg-white rounded-2xl shadow-md border border-[#e6d6bd] p-3">
+      <button
+        onClick={() => onViewProduct(product)}
+        className="w-full overflow-hidden rounded-xl bg-[#f8f0e4] flex items-center justify-center"
+      >
         <img
           src={
             product.image ||
@@ -10,10 +13,10 @@ function ProductCard({ product, addToCart }) {
           alt={product.name}
           className="w-full h-[170px] object-contain object-center"
         />
-      </div>
+      </button>
 
       <div className="p-2">
-        <p className="text-[10px] uppercase tracking-widest text-amber-700 mb-2">
+        <p className="text-[10px] uppercase tracking-widest text-[#b8860b] mb-2">
           {product.category}
         </p>
 
@@ -21,13 +24,13 @@ function ProductCard({ product, addToCart }) {
           {product.name}
         </h3>
 
-        <p className="text-2xl font-black mb-4">
+        <p className="text-2xl font-black mb-4 text-[#4b2e16]">
           ${Number(product.price || 0).toLocaleString("es-CO")}
         </p>
 
         <button
           onClick={() => addToCart(product)}
-          className="w-full bg-black text-white py-3 rounded-xl font-bold text-sm hover:bg-neutral-800 transition"
+          className="w-full bg-[#c9a227] text-white py-3 rounded-xl font-bold text-sm hover:bg-[#b48c18] transition"
         >
           Agregar al carrito
         </button>
