@@ -8,6 +8,7 @@ function App() {
   const [search, setSearch] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("Todos")
   const [selectedProduct, setSelectedProduct] = useState(null)
+  const [cartBump, setCartBump] = useState(false)
 
   useEffect(() => {
     const savedProducts =
@@ -17,6 +18,7 @@ function App() {
       JSON.parse(localStorage.getItem("deletedProducts")) || []
 
     const savedIds = savedProducts.map((p) => p.id)
+
 
     const mergedProducts = [
       ...products.filter(
@@ -41,6 +43,11 @@ function App() {
 
   const addToCart = (product) => {
     setCart((currentCart) => [...currentCart, product])
+    setCartBump(true)
+
+    setTimeout(() => {
+      setCartBump(false)
+    }, 450)
   }
 
   const removeFromCart = (indexToRemove) => {
@@ -131,7 +138,8 @@ Método de pago:`
                 .getElementById("cart-section")
                 ?.scrollIntoView({ behavior: "smooth" })
             }}
-            className="bg-[#c9a227] text-white px-4 py-2 rounded-full font-bold text-sm shadow hover:bg-[#b48c18] transition"
+            className={`bg-[#c9a227] text-white px-4 py-2 rounded-full font-bold text-sm shadow hover:bg-[#b48c18] transition ${cartBump ? "scale-125 animate-bounce" : "scale-100"
+              }`}
           >
             🛒 {cart.length}
           </button>
@@ -164,7 +172,7 @@ Método de pago:`
           </div>
         </section>
 
-        <section className="bg-[#fffaf2] border border-[#e6d6bd] rounded-3xl p-4 mb-6 shadow-sm">
+        <section className="sticky top-[72px] z-40 bg-[#fffaf2]/95 backdrop-blur border border-[#e6d6bd] rounded-3xl p-4 mb-6 shadow-sm">
           <div className="relative mb-4">
             <span className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400">
               🔍
