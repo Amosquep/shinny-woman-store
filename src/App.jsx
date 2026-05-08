@@ -125,9 +125,16 @@ Método de pago:`
             Shinny <span className="text-[#b8860b]">Woman</span>
           </h1>
 
-          <div className="bg-[#c9a227] text-white px-4 py-2 rounded-full font-bold text-sm shadow">
+          <button
+            onClick={() => {
+              document
+                .getElementById("cart-section")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }}
+            className="bg-[#c9a227] text-white px-4 py-2 rounded-full font-bold text-sm shadow hover:bg-[#b48c18] transition"
+          >
             🛒 {cart.length}
-          </div>
+          </button>
         </div>
       </header>
 
@@ -200,11 +207,10 @@ Método de pago:`
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full whitespace-nowrap text-sm font-semibold transition ${
-                  selectedCategory === category
-                    ? "bg-[#c9a227] text-white"
-                    : "bg-[#f8f0e4] text-[#4b2e16] hover:bg-[#ead9bd]"
-                }`}
+                className={`px-4 py-2 rounded-full whitespace-nowrap text-sm font-semibold transition ${selectedCategory === category
+                  ? "bg-[#c9a227] text-white"
+                  : "bg-[#f8f0e4] text-[#4b2e16] hover:bg-[#ead9bd]"
+                  }`}
               >
                 {category}
               </button>
@@ -212,7 +218,10 @@ Método de pago:`
           </div>
         </section>
 
-        <section className="bg-[#fffaf2] border border-[#e6d6bd] rounded-3xl p-4 sm:p-6 mb-6 shadow-sm">
+        <section
+          id="cart-section"
+          className="bg-[#fffaf2] border border-[#e6d6bd] rounded-3xl p-4 sm:p-6 mb-6 shadow-sm"
+        >
           <h2 className="text-2xl font-black mb-4 text-[#4b2e16]">
             Carrito ({cart.length})
           </h2>
